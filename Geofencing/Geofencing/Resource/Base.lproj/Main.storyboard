@@ -85,54 +85,61 @@
             </objects>
             <point key="canvasLocation" x="3067" y="-567"/>
         </scene>
-        <!--View Controller-->
+        <!--LocationVC-->
         <scene sceneID="dJD-6r-rWz">
             <objects>
-                <viewController id="avi-G1-6pK" customClass="ViewController" customModule="Geofencing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="avi-G1-6pK" customClass="LocationVC" customModule="Geofencing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9eH-gu-NKT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click below to enable location services" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywg-O6-44j">
-                                <rect key="frame" x="20.5" y="388.5" width="373" height="74"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
-                                <color key="textColor" red="0.20392156859999999" green="0.2470588235" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_locate" translatesAutoresizingMaskIntoConstraints="NO" id="rP9-4h-wgS">
-                                <rect key="frame" x="124" y="183" width="166" height="165.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jED-RN-u9r">
+                                <rect key="frame" x="0.0" y="-17" width="414" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location services are disabled. Click on `Authorize` button below to request." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywg-O6-44j">
+                                        <rect key="frame" x="20.5" y="330" width="373" height="148"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.2470588235" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onk-OS-c5V">
+                                        <rect key="frame" x="21.5" y="657" width="373" height="60"/>
+                                        <color key="backgroundColor" red="0.21568627450980393" green="0.24705882352941178" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Npc-gL-oUY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Authorize">
+                                            <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionTapOnAuthorize:" destination="avi-G1-6pK" eventType="touchUpInside" id="vBB-dh-9b8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="rP9-4h-wgS" secondAttribute="height" multiplier="1:1" id="3uc-ma-ZLh"/>
+                                    <constraint firstItem="Ywg-O6-44j" firstAttribute="centerX" secondItem="jED-RN-u9r" secondAttribute="centerX" id="2GQ-Kd-RFY"/>
+                                    <constraint firstItem="Ywg-O6-44j" firstAttribute="width" secondItem="jED-RN-u9r" secondAttribute="width" multiplier="0.9" id="JEH-5T-qg8"/>
+                                    <constraint firstItem="Ywg-O6-44j" firstAttribute="centerY" secondItem="jED-RN-u9r" secondAttribute="centerY" id="L07-8g-jz5"/>
+                                    <constraint firstItem="Onk-OS-c5V" firstAttribute="centerY" secondItem="jED-RN-u9r" secondAttribute="centerY" multiplier="1.7" id="N7F-0z-Mgy"/>
+                                    <constraint firstItem="Onk-OS-c5V" firstAttribute="width" secondItem="jED-RN-u9r" secondAttribute="width" multiplier="0.9" id="Vqf-Xm-DDu"/>
+                                    <constraint firstItem="Onk-OS-c5V" firstAttribute="centerX" secondItem="jED-RN-u9r" secondAttribute="centerX" constant="1" id="pz2-Br-RA5"/>
+                                    <constraint firstItem="Onk-OS-c5V" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ywg-O6-44j" secondAttribute="bottom" constant="50" id="wQm-9d-2Jm"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onk-OS-c5V">
-                                <rect key="frame" x="20.5" y="619" width="373" height="55"/>
-                                <color key="backgroundColor" red="0.21568627450980393" green="0.24705882352941178" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="Npc-gL-oUY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Authorize">
-                                    <color key="titleColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Bxm-cF-6FA" firstAttribute="bottom" secondItem="Onk-OS-c5V" secondAttribute="bottom" constant="100" id="1Iq-ED-NSP"/>
-                            <constraint firstItem="rP9-4h-wgS" firstAttribute="centerX" secondItem="Bxm-cF-6FA" secondAttribute="centerX" id="62O-kG-gjB"/>
-                            <constraint firstItem="rP9-4h-wgS" firstAttribute="width" secondItem="9eH-gu-NKT" secondAttribute="width" multiplier="0.4" id="JIV-RJ-J8g"/>
-                            <constraint firstItem="Ywg-O6-44j" firstAttribute="top" secondItem="rP9-4h-wgS" secondAttribute="bottom" constant="40" id="ZUH-h9-dc9"/>
-                            <constraint firstItem="Ywg-O6-44j" firstAttribute="width" secondItem="9eH-gu-NKT" secondAttribute="width" multiplier="0.9" id="jbG-Ze-aP3"/>
-                            <constraint firstItem="Ywg-O6-44j" firstAttribute="centerX" secondItem="Bxm-cF-6FA" secondAttribute="centerX" id="mg0-0g-tPI"/>
-                            <constraint firstItem="Onk-OS-c5V" firstAttribute="centerX" secondItem="Ywg-O6-44j" secondAttribute="centerX" id="oLz-wX-rz5"/>
-                            <constraint firstItem="Onk-OS-c5V" firstAttribute="width" secondItem="Ywg-O6-44j" secondAttribute="width" id="pBr-VE-ubG"/>
-                            <constraint firstItem="Ywg-O6-44j" firstAttribute="centerY" secondItem="Bxm-cF-6FA" secondAttribute="centerY" multiplier="1.1" id="xTD-D1-44I"/>
+                            <constraint firstItem="jED-RN-u9r" firstAttribute="width" secondItem="9eH-gu-NKT" secondAttribute="width" id="NOK-Hg-Dbf"/>
+                            <constraint firstItem="jED-RN-u9r" firstAttribute="centerX" secondItem="Bxm-cF-6FA" secondAttribute="centerX" id="Rhb-3q-CAe"/>
+                            <constraint firstItem="jED-RN-u9r" firstAttribute="height" secondItem="9eH-gu-NKT" secondAttribute="height" id="Ypm-UC-eod"/>
+                            <constraint firstItem="jED-RN-u9r" firstAttribute="centerY" secondItem="Bxm-cF-6FA" secondAttribute="centerY" id="gYm-we-DxO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bxm-cF-6FA"/>
                     </view>
@@ -163,7 +170,4 @@
             <point key="canvasLocation" x="1134.7826086956522" y="-567.1875"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_locate" width="120.5" height="107"/>
-    </resources>
 </document>

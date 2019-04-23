@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C029A5B226F3967003CB305 /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C029A5A226F3967003CB305 /* LocationVM.swift */; };
+		6C029A5E226F42C1003CB305 /* DefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C029A5D226F42C1003CB305 /* DefaultsHelper.swift */; };
 		6C6279B5226DD95400480AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6279B4226DD95400480AB1 /* AppDelegate.swift */; };
-		6C6279B7226DD95400480AB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6279B6226DD95400480AB1 /* ViewController.swift */; };
+		6C6279B7226DD95400480AB1 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6279B6226DD95400480AB1 /* LocationVC.swift */; };
 		6C6279BA226DD95400480AB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6279B8226DD95400480AB1 /* Main.storyboard */; };
 		6C6279BC226DD95500480AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C6279BB226DD95500480AB1 /* Assets.xcassets */; };
 		6C6279BF226DD95500480AB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C6279BD226DD95500480AB1 /* LaunchScreen.storyboard */; };
@@ -19,9 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C029A5A226F3967003CB305 /* LocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
+		6C029A5D226F42C1003CB305 /* DefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsHelper.swift; sourceTree = "<group>"; };
 		6C6279B1226DD95400480AB1 /* Geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geofencing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C6279B4226DD95400480AB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6C6279B6226DD95400480AB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6C6279B6226DD95400480AB1 /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		6C6279B9226DD95400480AB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6C6279BB226DD95500480AB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C6279BE226DD95500480AB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C029A59226F38A6003CB305 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				6C029A5A226F3967003CB305 /* LocationVM.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		6C6279A8226DD95400480AB1 = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +76,8 @@
 			children = (
 				6C6279C7226DDB0F00480AB1 /* App Delegate */,
 				6C6279C9226DDB1A00480AB1 /* Model */,
-				6C6279C8226DDB1700480AB1 /* Class */,
+				6C6279C8226DDB1700480AB1 /* View Controller */,
+				6C029A59226F38A6003CB305 /* View Model */,
 				6C6279CC226DDE2D00480AB1 /* Reusable */,
 				6C6279C6226DDB0700480AB1 /* Resource */,
 			);
@@ -90,13 +103,13 @@
 			path = "App Delegate";
 			sourceTree = "<group>";
 		};
-		6C6279C8226DDB1700480AB1 /* Class */ = {
+		6C6279C8226DDB1700480AB1 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6C6279B6226DD95400480AB1 /* ViewController.swift */,
+				6C6279B6226DD95400480AB1 /* LocationVC.swift */,
 				6C6279D7226E0D8600480AB1 /* SettingsVC.swift */,
 			);
-			path = Class;
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		6C6279C9226DDB1A00480AB1 /* Model */ = {
@@ -112,6 +125,7 @@
 			children = (
 				6C6279D3226E00AC00480AB1 /* Global.swift */,
 				6C6279D5226E047500480AB1 /* UIViewController+Extension.swift */,
+				6C029A5D226F42C1003CB305 /* DefaultsHelper.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -189,10 +203,12 @@
 			files = (
 				6C6279D6226E047500480AB1 /* UIViewController+Extension.swift in Sources */,
 				6C6279CB226DDB6200480AB1 /* Geofence.swift in Sources */,
-				6C6279B7226DD95400480AB1 /* ViewController.swift in Sources */,
+				6C6279B7226DD95400480AB1 /* LocationVC.swift in Sources */,
 				6C6279D4226E00AC00480AB1 /* Global.swift in Sources */,
 				6C6279B5226DD95400480AB1 /* AppDelegate.swift in Sources */,
 				6C6279D8226E0D8600480AB1 /* SettingsVC.swift in Sources */,
+				6C029A5B226F3967003CB305 /* LocationVM.swift in Sources */,
+				6C029A5E226F42C1003CB305 /* DefaultsHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3M59L34B7;
 				INFOPLIST_FILE = "$(SRCROOT)/Geofencing/Resource/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -360,7 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3M59L34B7;
 				INFOPLIST_FILE = "$(SRCROOT)/Geofencing/Resource/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
