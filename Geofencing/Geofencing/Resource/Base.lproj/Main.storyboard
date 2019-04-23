@@ -32,6 +32,9 @@
                                         <state key="normal" title="Set Region">
                                             <color key="titleColor" red="0.21625077724456787" green="0.24670282006263733" blue="0.27059188485145569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionTapSetRegion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y5q-VS-ViY"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGf-Df-9mt">
                                         <rect key="frame" x="0.0" y="70" width="414" height="65"/>
@@ -44,6 +47,9 @@
                                         <state key="normal" title="Set Radius">
                                             <color key="titleColor" red="0.21625077724456787" green="0.24670282006263733" blue="0.27059188485145569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionTapSetRadius:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M60-dW-YKD"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG5-GU-TSP">
                                         <rect key="frame" x="0.0" y="140" width="414" height="65"/>
@@ -103,10 +109,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onk-OS-c5V">
-                                        <rect key="frame" x="21.5" y="657" width="373" height="60"/>
+                                        <rect key="frame" x="21.5" y="662" width="373" height="50"/>
                                         <color key="backgroundColor" red="0.21568627450980393" green="0.24705882352941178" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="Npc-gL-oUY"/>
+                                            <constraint firstAttribute="height" constant="50" id="Npc-gL-oUY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="Authorize">
@@ -122,7 +128,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.93725484609603882" green="0.93725496530532837" blue="0.93725490570068359" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="Ywg-O6-44j" firstAttribute="centerX" secondItem="jED-RN-u9r" secondAttribute="centerX" id="2GQ-Kd-RFY"/>
                                     <constraint firstItem="Ywg-O6-44j" firstAttribute="width" secondItem="jED-RN-u9r" secondAttribute="width" multiplier="0.9" id="JEH-5T-qg8"/>
@@ -133,19 +139,53 @@
                                     <constraint firstItem="Onk-OS-c5V" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ywg-O6-44j" secondAttribute="bottom" constant="50" id="wQm-9d-2Jm"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-PE-90K">
+                                <rect key="frame" x="0.0" y="-17" width="414" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The device will monitor its location and keep updating the status below" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdu-Ch-Ws9">
+                                        <rect key="frame" x="20.5" y="141" width="373" height="41"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This device is inside geofence area" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFT-Mj-JG3">
+                                        <rect key="frame" x="20.5" y="367" width="373" height="74"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
+                                        <color key="textColor" red="0.20392156859999999" green="0.2470588235" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725484609603882" green="0.93725496530532837" blue="0.93725490570068359" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="Xdu-Ch-Ws9" firstAttribute="width" secondItem="GFT-Mj-JG3" secondAttribute="width" id="LP2-Dp-THD"/>
+                                    <constraint firstItem="GFT-Mj-JG3" firstAttribute="width" secondItem="CzJ-PE-90K" secondAttribute="width" multiplier="0.9" id="UWd-gT-Gd8"/>
+                                    <constraint firstItem="GFT-Mj-JG3" firstAttribute="centerX" secondItem="CzJ-PE-90K" secondAttribute="centerX" id="XSJ-3s-8OL"/>
+                                    <constraint firstItem="Xdu-Ch-Ws9" firstAttribute="centerY" secondItem="CzJ-PE-90K" secondAttribute="centerY" multiplier="0.4" id="Xp0-P9-RuH"/>
+                                    <constraint firstItem="Xdu-Ch-Ws9" firstAttribute="centerX" secondItem="GFT-Mj-JG3" secondAttribute="centerX" id="dey-3B-ddc"/>
+                                    <constraint firstItem="GFT-Mj-JG3" firstAttribute="centerY" secondItem="CzJ-PE-90K" secondAttribute="centerY" id="rTi-aw-N6z"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jED-RN-u9r" firstAttribute="width" secondItem="9eH-gu-NKT" secondAttribute="width" id="NOK-Hg-Dbf"/>
+                            <constraint firstItem="CzJ-PE-90K" firstAttribute="height" secondItem="9eH-gu-NKT" secondAttribute="height" id="Qgn-dY-reX"/>
                             <constraint firstItem="jED-RN-u9r" firstAttribute="centerX" secondItem="Bxm-cF-6FA" secondAttribute="centerX" id="Rhb-3q-CAe"/>
+                            <constraint firstItem="CzJ-PE-90K" firstAttribute="centerX" secondItem="Bxm-cF-6FA" secondAttribute="centerX" id="TjU-dg-IOV"/>
+                            <constraint firstItem="CzJ-PE-90K" firstAttribute="centerY" secondItem="Bxm-cF-6FA" secondAttribute="centerY" id="Tue-WV-Rlc"/>
                             <constraint firstItem="jED-RN-u9r" firstAttribute="height" secondItem="9eH-gu-NKT" secondAttribute="height" id="Ypm-UC-eod"/>
                             <constraint firstItem="jED-RN-u9r" firstAttribute="centerY" secondItem="Bxm-cF-6FA" secondAttribute="centerY" id="gYm-we-DxO"/>
+                            <constraint firstItem="CzJ-PE-90K" firstAttribute="width" secondItem="9eH-gu-NKT" secondAttribute="width" id="kJJ-RT-BcG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bxm-cF-6FA"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="Qmb-Aj-4tP"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="labelStatus" destination="GFT-Mj-JG3" id="o6J-5j-WcG"/>
+                        <outlet property="viewStatus" destination="CzJ-PE-90K" id="o14-mZ-1m2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9P-nb-CNs" sceneMemberID="firstResponder"/>
             </objects>
@@ -168,6 +208,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zup-fG-k2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1134.7826086956522" y="-567.1875"/>
+        </scene>
+        <!--MapviewVC-->
+        <scene sceneID="gse-qa-mKQ">
+            <objects>
+                <viewController storyboardIdentifier="MapviewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tcL-CL-ulp" customClass="MapviewVC" customModule="Geofencing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pC4-mR-jev">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-gX-jEW">
+                                <rect key="frame" x="0.0" y="-17" width="414" height="808"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLv-YR-ZcL">
+                                <rect key="frame" x="20.5" y="633" width="373" height="50"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.2470588235" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wcM-eK-2dw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actionTapOnAuthorize:" destination="avi-G1-6pK" eventType="touchUpInside" id="BII-9l-ZgJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Iwt-gX-jEW" firstAttribute="height" secondItem="pC4-mR-jev" secondAttribute="height" id="7HS-V7-shK"/>
+                            <constraint firstItem="Iwt-gX-jEW" firstAttribute="centerY" secondItem="vhV-1W-HqE" secondAttribute="centerY" id="Ee4-1Z-VNl"/>
+                            <constraint firstItem="Iwt-gX-jEW" firstAttribute="centerX" secondItem="vhV-1W-HqE" secondAttribute="centerX" id="KYS-xr-SUr"/>
+                            <constraint firstItem="Iwt-gX-jEW" firstAttribute="width" secondItem="pC4-mR-jev" secondAttribute="width" id="Zpg-cZ-2eT"/>
+                            <constraint firstItem="pLv-YR-ZcL" firstAttribute="centerY" secondItem="vhV-1W-HqE" secondAttribute="centerY" multiplier="1.7" id="aZe-Fl-UDy"/>
+                            <constraint firstItem="pLv-YR-ZcL" firstAttribute="centerX" secondItem="vhV-1W-HqE" secondAttribute="centerX" id="pfX-2r-MbH"/>
+                            <constraint firstItem="pLv-YR-ZcL" firstAttribute="width" secondItem="pC4-mR-jev" secondAttribute="width" multiplier="0.9" id="xQk-sF-DAS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vhV-1W-HqE"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="duM-b6-5SA" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4009" y="-567"/>
         </scene>
     </scenes>
 </document>

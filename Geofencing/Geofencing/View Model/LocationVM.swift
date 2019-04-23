@@ -33,17 +33,13 @@ extension LocationVM {
     
     // MARK: - Private
     private func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined:
-                locationManager.requestAlwaysAuthorization()
-            case .authorizedAlways, .authorizedWhenInUse:
-                locationServicesEnabled?()
-            default:
-                locationServicesDisabled?()
-            }
-        } else {
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
             locationManager.requestAlwaysAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationServicesEnabled?()
+        default:
+            locationServicesDisabled?()
         }
     }
     
@@ -54,7 +50,8 @@ extension LocationVM {
     
     // MARK: - Public
     func checkStatus() {
-        checkLocationServices()
+        locationManager.requestAlwaysAuthorization()
+//        checkLocationServices()
     }
     
     func requestMonitoring() {

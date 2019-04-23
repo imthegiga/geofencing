@@ -17,7 +17,13 @@ class SettingsVC: UIViewController {
 
         // Do any additional setup after loading the view.
         initCommon()
-        
+    }
+    
+    @IBAction func actionTapSetRegion(_ sender: Any) {
+        pushVC(MapviewVC.identifier)
+    }
+    
+    @IBAction func actionTapSetRadius(_ sender: Any) {
     }
 }
 

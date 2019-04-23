@@ -49,11 +49,11 @@ extension UIViewController {
         popVC()
     }
     
-    func pushVC(_ viewController: UIViewController) {
-        guard let nvc = self.navigationController else {
+    func pushVC(_ identifier: String) {
+        guard let nvc = self.navigationController, let controller = getStoryboardVC(identifier) else {
             return
         }
-        nvc.pushViewController(viewController, animated: true)
+        nvc.pushViewController(controller, animated: true)
     }
     
     func popVC() {

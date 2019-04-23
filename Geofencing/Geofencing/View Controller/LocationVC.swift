@@ -13,7 +13,11 @@ class LocationVC: UIViewController {
     
     // MARK: - Variables
     private let viewModel = LocationVM()
-
+    
+    // MARK: - IBOutlet
+    @IBOutlet private weak var viewStatus: UIView!
+    @IBOutlet private weak var labelStatus: UILabel!
+    
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -26,10 +30,7 @@ class LocationVC: UIViewController {
     
     // MARK: - Actions
     override func onClickRightButtonItem() {
-        guard let controller = getStoryboardVC(SettingsVC.identifier) else {
-            return
-        }
-        pushVC(controller)
+        pushVC(SettingsVC.identifier)
     }
     
     @IBAction func actionTapOnAuthorize(_ sender: Any) {
