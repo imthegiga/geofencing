@@ -139,7 +139,7 @@
                                     <constraint firstItem="Onk-OS-c5V" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ywg-O6-44j" secondAttribute="bottom" constant="50" id="wQm-9d-2Jm"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-PE-90K">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-PE-90K">
                                 <rect key="frame" x="0.0" y="-17" width="414" height="808"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The device will monitor its location and keep updating the status below" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdu-Ch-Ws9">
@@ -183,7 +183,10 @@
                     <navigationItem key="navigationItem" id="Qmb-Aj-4tP"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="buttonStatus" destination="Onk-OS-c5V" id="bxS-HW-Nfl"/>
+                        <outlet property="labelMessage" destination="Ywg-O6-44j" id="0kv-rk-Bel"/>
                         <outlet property="labelStatus" destination="GFT-Mj-JG3" id="o6J-5j-WcG"/>
+                        <outlet property="viewMain" destination="jED-RN-u9r" id="ghl-5N-b4i"/>
                         <outlet property="viewStatus" destination="CzJ-PE-90K" id="o14-mZ-1m2"/>
                     </connections>
                 </viewController>
