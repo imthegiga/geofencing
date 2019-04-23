@@ -230,7 +230,7 @@
                                     <constraint firstAttribute="height" constant="50" id="wcM-eK-2dw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Update">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -256,6 +256,9 @@
                         <viewLayoutGuide key="safeArea" id="vhV-1W-HqE"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="mapView" destination="Iwt-gX-jEW" id="pD2-0k-YYj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duM-b6-5SA" sceneMemberID="firstResponder"/>
             </objects>

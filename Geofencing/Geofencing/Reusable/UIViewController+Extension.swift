@@ -29,6 +29,18 @@ extension UIViewController {
         navigationItem.title = title
     }
     
+    func addRightIndicator() {
+        let indicator = UIActivityIndicatorView.init(style: .gray)
+        indicator.frame = .init(origin: .zero, size: .init(width: 40, height: 40))
+        indicator.color = Color.primary
+        indicator.startAnimating()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: indicator)
+    }
+    
+    func removeRightBarButtonItem() {
+        self.navigationItem.rightBarButtonItem = nil
+    }
+    
     func addRightIcon(_ icon: UIImage) {
         let button = initBarButton(image: icon, tintColor: Color.primary)
         button.addTarget(self, action: #selector(onClickRightButtonItem), for: .touchUpInside)
