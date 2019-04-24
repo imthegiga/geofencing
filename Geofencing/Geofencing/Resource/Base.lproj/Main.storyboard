@@ -240,6 +240,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="actionTapOnAuthorize:" destination="avi-G1-6pK" eventType="touchUpInside" id="BII-9l-ZgJ"/>
+                                    <action selector="actionTapOnUpdate:" destination="tcL-CL-ulp" eventType="touchUpInside" id="jKl-bV-VXw"/>
                                 </connections>
                             </button>
                         </subviews>

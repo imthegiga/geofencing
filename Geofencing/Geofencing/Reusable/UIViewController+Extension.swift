@@ -74,4 +74,28 @@ extension UIViewController {
         }
         _ = nvc.popViewController(animated: true)
     }
+    
+    func popToRoot() {
+        guard let nvc = self.navigationController else {
+            return
+        }
+        _ = nvc.popToRootViewController(animated: true)
+    }
+    
+    func openAppSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: nil)
+        }
+    }
+    
+    func showAlert(_ message: String) {
+        let alertVC = UIAlertController.init(title: "", message: message, preferredStyle: .alert)
+        alertVC.addAction(.init(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertVC, animated: true, completion: nil)
+        }
+    }
 }

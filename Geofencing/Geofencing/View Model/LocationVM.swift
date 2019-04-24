@@ -16,8 +16,9 @@ class LocationVM: NSObject {
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
-        manager.activityType = .fitness
+        manager.activityType = .otherNavigation
         manager.desiredAccuracy = 200
+        manager.allowsBackgroundLocationUpdates = true
         return manager
     }()
     
@@ -25,6 +26,10 @@ class LocationVM: NSObject {
     // MARK: - Public Variables
     public var locationServicesEnabled: (()-> Void)?
     public var locationServicesDisabled: (()-> Void)?
+    public var locationServicesNotDetermined: (() -> Void)?
+    public var locationServicesEnteredRegion: ((String) -> Void)?
+    public var locationServicesExitedRegion: ((String) -> Void)?
+    public var locationServicesGeofenceUnavailable: (() -> Void)?
 }
 
 
@@ -35,7 +40,7 @@ extension LocationVM {
     private func checkLocationServices() {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
+            locationServicesNotDetermined?()
         case .authorizedAlways, .authorizedWhenInUse:
             locationServicesEnabled?()
         default:
@@ -44,18 +49,56 @@ extension LocationVM {
     }
     
     private func startMonitoring() {
-        
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            locationServicesGeofenceUnavailable?()
+            return
+        }
+        guard let region = Geofence.shared.getCLRegion() else { return }
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        stopMonitoring()
+        locationManager.startMonitoring(for: region)
+        checkCurrentLocation(region)
+    }
+    
+    private func checkCurrentLocation(_ circularRegion: CLCircularRegion?) {
+        guard let region = circularRegion, let userLocation = locationManager.location else {
+            return
+        }
+        let location = CLLocation.init(latitude: region.center.latitude, longitude: region.center.longitude)
+        if userLocation.distance(from: location) <= location.altitude {
+            CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
+                self.locationServicesEnteredRegion?((placemark ?? []).first?.locality ?? "")
+            }
+        } else {
+            CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
+                self.locationServicesExitedRegion?((placemark ?? []).first?.locality ?? "")
+            }
+        }
+    }
+    
+    private func stopMonitoring() {
+        for region in locationManager.monitoredRegions {
+            locationManager.stopMonitoring(for: region)
+        }
     }
     
     
     // MARK: - Public
-    func checkStatus() {
-        locationManager.requestAlwaysAuthorization()
-//        checkLocationServices()
+    @objc func checkStatus() {
+        checkLocationServices()
     }
     
-    func requestMonitoring() {
+    func requestAuthorization() {
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    func enableMonitoring() {
         startMonitoring()
+    }
+    
+    func disableMonitoring() {
+        stopMonitoring()
     }
 }
 
@@ -65,6 +108,8 @@ extension LocationVM: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
+        case .notDetermined:
+            locationServicesNotDetermined?()
         case .authorizedAlways, .authorizedWhenInUse:
             locationServicesEnabled?()
         default:
@@ -72,15 +117,23 @@ extension LocationVM: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-    }
-    
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
+        print("Entered region", region.identifier)
+        if let circularRegion = region as? CLCircularRegion {
+            let location = CLLocation.init(latitude: circularRegion.center.latitude, longitude: circularRegion.center.longitude)
+            CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
+                self.locationServicesEnteredRegion?((placemark ?? []).first?.locality ?? "")
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
+        print("Exited region", region.identifier)
+        if let circularRegion = region as? CLCircularRegion {
+            let location = CLLocation.init(latitude: circularRegion.center.latitude, longitude: circularRegion.center.longitude)
+            CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
+                self.locationServicesExitedRegion?((placemark ?? []).first?.locality ?? "")
+            }
+        }
     }
 }

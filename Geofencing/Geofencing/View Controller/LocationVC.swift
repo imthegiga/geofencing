@@ -13,8 +13,16 @@ class LocationVC: UIViewController {
     
     // MARK: - Variables
     private let viewModel = LocationVM()
-    private var messagePrefix = "Location services are disabled! Click on"
-    private var messageSuffix = "button below to request."
+    enum Message: String {
+        case messageRequest = "Location services are disabled! Click on `Authorize` button below to request."
+        case messageEnable = "Enable location services by clicking `Settings` button below."
+        case deviceInsideGeofence = "This device is inside geofence area"
+        case deviceOutsideGeofence = "This device is outside geofence area"
+        case monitorTitle = "The device will monitor its location and keep updating the status below"
+        case geofenceRegionNeeded = "Set region from ⚙︎ to monitor"
+        case geofenceMonitorStart = "This device started monitoring geofence area"
+        case geofenceUnavailable = "The device does not support geofencing"
+    }
     
     
     // MARK: - IBOutlet
@@ -35,7 +43,7 @@ class LocationVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.checkStatus()
+        trackStatus()
     }
     
     
@@ -46,14 +54,9 @@ class LocationVC: UIViewController {
     
     @IBAction func actionTapOnAuthorize(_ sender: UIButton) {
         if sender.tag == -2 {
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                return
-            }
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: nil)
-            }
+            openAppSettings()
         } else {
-            viewModel.checkStatus()
+            viewModel.requestAuthorization()
         }
     }
 }
@@ -64,10 +67,19 @@ extension LocationVC {
     
     func initCommon() {
         setTitle("Geofencing")
+        NotificationCenter.default.addObserver(self, selector: #selector(trackStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
-    func updateMessage() {
-        labelMessage.text = "\(messagePrefix) `\(buttonStatus.titleLabel?.text ?? "-")` \(messageSuffix)"
+    @objc func trackStatus() {
+        viewModel.checkStatus()
+    }
+    
+    func updateMessage(_ message: Message) {
+        labelMessage.text = message.rawValue
+    }
+    
+    func updateStatus(_ status: Message) {
+        labelStatus.text = status.rawValue
     }
 }
 
@@ -78,22 +90,64 @@ extension LocationVC {
     func initBinding() {
         
         viewModel.locationServicesEnabled = { [weak self] in
-            self?.viewModel.requestMonitoring()
-            self?.viewStatus.isHidden = false
-            self?.viewMain.isHidden = true
-            self?.addRightIcon(Icon.settings)
+            self?.checkRegionSet()
+            self?.showEnabledView()
         }
         
         viewModel.locationServicesDisabled = { [weak self] in
-            self?.viewStatus.isHidden = true
-            self?.viewMain.isHidden = false
-            self?.setButtonTitle("Settings")
-            self?.buttonStatus.tag = -2
+            self?.showDisabledView()
+        }
+        
+        viewModel.locationServicesNotDetermined = { [weak self] in
+            self?.showNotDeterminedView()
+        }
+        
+        viewModel.locationServicesEnteredRegion = { [weak self] (address) in
+            self?.updateStatus(.deviceInsideGeofence)
+            self?.labelStatus.text?.append(" \(address)")
+        }
+        
+        viewModel.locationServicesExitedRegion = { [weak self] (address) in
+            self?.updateStatus(.deviceOutsideGeofence)
+            self?.labelStatus.text?.append(" \(address)")
+        }
+        
+        viewModel.locationServicesGeofenceUnavailable = { [weak self] in
+            self?.updateStatus(.geofenceUnavailable)
         }
     }
     
-    func setButtonTitle(_ title: String) {
+    func setButtonTitle(_ title: String, _ message: Message) {
         buttonStatus.setTitle(title, for: .normal)
-        updateMessage()
+        updateMessage(message)
+    }
+    
+    func checkRegionSet() {
+        if !Geofence.shared.isRegionAvailable() {
+            updateStatus(.geofenceRegionNeeded)
+        } else {
+            updateStatus(.geofenceMonitorStart)
+        }
+    }
+    
+    func showEnabledView() {
+        viewModel.enableMonitoring()
+        viewStatus.isHidden = false
+        viewMain.isHidden = true
+        addRightIcon(Icon.settings)
+    }
+    
+    func showDisabledView() {
+        viewStatus.isHidden = true
+        viewMain.isHidden = false
+        setButtonTitle("Settings", .messageEnable)
+        buttonStatus.tag = -2
+    }
+    
+    func showNotDeterminedView() {
+        viewStatus.isHidden = true
+        viewMain.isHidden = false
+        setButtonTitle("Authorize", .messageRequest)
+        buttonStatus.tag = -1
     }
 }

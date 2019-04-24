@@ -20,6 +20,7 @@ class DefaultsHelper {
     
     public static func saveValue(_ value: Any, _ key: DefaultsKey) {
         defaults.set(value, forKey: key.rawValue)
+        UserDefaults.standard.synchronize()
     }
     
     public static func getValue(_ key: DefaultsKey) -> Any? {
