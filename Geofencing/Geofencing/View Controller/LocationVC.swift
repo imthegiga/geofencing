@@ -114,6 +114,7 @@ extension LocationVC {
         
         viewModel.locationServicesGeofenceUnavailable = { [weak self] in
             self?.updateStatus(.geofenceUnavailable)
+            self?.removeRightBarButtonItem()
         }
     }
     
@@ -142,6 +143,7 @@ extension LocationVC {
         viewMain.isHidden = false
         setButtonTitle("Settings", .messageEnable)
         buttonStatus.tag = -2
+        removeRightBarButtonItem()
     }
     
     func showNotDeterminedView() {
@@ -149,5 +151,6 @@ extension LocationVC {
         viewMain.isHidden = false
         setButtonTitle("Authorize", .messageRequest)
         buttonStatus.tag = -1
+        removeRightBarButtonItem()
     }
 }
