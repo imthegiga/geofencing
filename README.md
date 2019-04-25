@@ -20,6 +20,7 @@ Run.
 Screenshots
 ------
 |![1](https://github.com/imthegiga/geofencing/blob/master/Screenshots/1.PNG)|![2](https://github.com/imthegiga/geofencing/blob/master/Screenshots/2.PNG)|
+|:---:|:---:|
 |![3](https://github.com/imthegiga/geofencing/blob/master/Screenshots/3.PNG)|![4](https://github.com/imthegiga/geofencing/blob/master/Screenshots/4.PNG)|
 
 
