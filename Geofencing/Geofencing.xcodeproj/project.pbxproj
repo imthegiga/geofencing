@@ -36,6 +36,7 @@
 		6C6279D3226E00AC00480AB1 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		6C6279D5226E047500480AB1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		6C6279D7226E0D8600480AB1 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		6CDC1D3A22717C02002BF093 /* Geofencing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Geofencing.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 			children = (
 				6C6279B3226DD95400480AB1 /* Geofencing */,
 				6C6279B2226DD95400480AB1 /* Products */,
+				6CDC1D3722717C02002BF093 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +78,7 @@
 		6C6279B3226DD95400480AB1 /* Geofencing */ = {
 			isa = PBXGroup;
 			children = (
+				6CDC1D3A22717C02002BF093 /* Geofencing.entitlements */,
 				6C6279C7226DDB0F00480AB1 /* App Delegate */,
 				6C6279C9226DDB1A00480AB1 /* Model */,
 				6C6279C8226DDB1700480AB1 /* View Controller */,
@@ -133,6 +136,13 @@
 			path = Reusable;
 			sourceTree = "<group>";
 		};
+		6CDC1D3722717C02002BF093 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +178,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 0;
 							};
 						};
 					};
@@ -363,6 +376,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3M59L34B7;
 				INFOPLIST_FILE = "$(SRCROOT)/Geofencing/Resource/Info.plist";
@@ -373,6 +387,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.thegiga.Geofencing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -382,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D3M59L34B7;
 				INFOPLIST_FILE = "$(SRCROOT)/Geofencing/Resource/Info.plist";
@@ -392,6 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.thegiga.Geofencing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

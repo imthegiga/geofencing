@@ -16,8 +16,8 @@ class LocationVM: NSObject {
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
-        manager.activityType = .otherNavigation
-        manager.desiredAccuracy = 200
+        manager.activityType = .fitness
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         manager.allowsBackgroundLocationUpdates = true
         return manager
     }()
@@ -49,6 +49,7 @@ extension LocationVM {
     }
     
     private func startMonitoring() {
+        stopMonitoring()
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             locationServicesGeofenceUnavailable?()
             return
@@ -56,8 +57,9 @@ extension LocationVM {
         guard let region = Geofence.shared.getCLRegion() else { return }
         region.notifyOnEntry = true
         region.notifyOnExit = true
-        stopMonitoring()
+        locationManager.distanceFilter = CLLocationDistance(Geofence.shared.getRadius())
         locationManager.startMonitoring(for: region)
+        locationManager.startUpdatingLocation()
         checkCurrentLocation(region)
     }
     
@@ -65,8 +67,9 @@ extension LocationVM {
         guard let region = circularRegion, let userLocation = locationManager.location else {
             return
         }
+        print("Wifi", Utils.getConnectedWifiInfo())
         let location = CLLocation.init(latitude: region.center.latitude, longitude: region.center.longitude)
-        if userLocation.distance(from: location) <= location.altitude {
+        if userLocation.distance(from: location) <= CLLocationDistance.init(Geofence.shared.getRadius()) {
             CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
                 self.locationServicesEnteredRegion?((placemark ?? []).first?.locality ?? "")
             }
@@ -114,6 +117,13 @@ extension LocationVM: CLLocationManagerDelegate {
             locationServicesEnabled?()
         default:
             locationServicesDisabled?()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Updated location")
+        if let region = Geofence.shared.getCLRegion() {
+            checkCurrentLocation(region)
         }
     }
     

@@ -45,6 +45,6 @@ class Geofence {
     }
     
     func getRadius() -> Int {
-        return DefaultsHelper.getValue(.radius) as? Int ?? 300 //defaults to 300 meters
+        return DefaultsHelper.getValue(.radius) as? Int ?? 10 //defaults to 10 meters
     }
 }

@@ -51,7 +51,8 @@ extension MapviewVC {
         addLeftIcon(Icon.arrowBack)
         setTitle("Set Region")
         mapView.delegate = self
-        
+        mapView.showsUserLocation = true
+        LocationVM().checkStatus()
         guard let region = Geofence.shared.getCLRegion() else {
             return
         }
@@ -63,7 +64,6 @@ extension MapviewVC {
                                             latitudinalMeters: CLLocationDistance(Geofence.shared.getRadius()),
                                             longitudinalMeters: CLLocationDistance(Geofence.shared.getRadius()))
         mapView.setRegion(viewRegion, animated: true)
-        mapView.showsUserLocation = true
     }
     
     func showCircle(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance) {
@@ -91,7 +91,9 @@ extension MapviewVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.fillColor = Color.primary
-        circleRenderer.alpha = 0.1
+        circleRenderer.alpha = 0.3
+        circleRenderer.strokeColor = Color.primary
+        circleRenderer.lineWidth = 1
         return circleRenderer
     }
 }
